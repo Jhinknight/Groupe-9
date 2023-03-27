@@ -25,9 +25,18 @@
 
 void InitApp(void)
 {
+    /* Declaration des entrees et sorties*/
     /* TODO Initialize User Ports/Peripherals/Project here */
-
     /* Setup analog functionality and port direction */
-
     /* Initialize peripherals */
+
+    TRISBbits.TRISB0 = 0; // Broche B0 en sortie
+    TRISBbits.TRISB1 = 0; // Broche B1
+    TRISBbits.TRISB2 = 0; // Broche B2
+    TRISBbits.TRISB3 = 0; // Broche B3
+    
+    PORTBbits.RB0 = 0; // B0 LOW
+    PORTBbits.RB1 = 0;
+    PORTBbits.RB2 = 0;
+    PORTBbits.RB3 = 0;
 }

@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p33FJ128MC802 \
   -o \
-  dist/XC16_dsPIC33FJ128MC802/production/CodeMeca.X.production.elf \
+  dist/XC16_dsPIC33FJ128MC802/debug/CodeMeca.X.debug.elf \
   -Ld:/games/mplab/bin/bin/.. \
   -Ld:/games/mplab/bin/bin/../../lib \
   -Ld:/games/mplab/bin/bin/../../support/PIC24E/gld \
@@ -16,13 +16,16 @@ Command:
   -Ld:/games/mplab/bin/bin/../../support/dsPIC33C/gld \
   -Ld:/games/mplab/bin/bin/../../support/dsPIC33E/gld \
   -Ld:/games/mplab/bin/bin/../../support/dsPIC33F/gld \
-  build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o \
-  build/XC16_dsPIC33FJ128MC802/production/interrupts.o \
-  build/XC16_dsPIC33FJ128MC802/production/main.o \
-  build/XC16_dsPIC33FJ128MC802/production/system.o \
-  build/XC16_dsPIC33FJ128MC802/production/traps.o \
-  build/XC16_dsPIC33FJ128MC802/production/user.o \
+  build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o \
+  build/XC16_dsPIC33FJ128MC802/debug/interrupts.o \
+  build/XC16_dsPIC33FJ128MC802/debug/main.o \
+  build/XC16_dsPIC33FJ128MC802/debug/system.o \
+  build/XC16_dsPIC33FJ128MC802/debug/traps.o \
+  build/XC16_dsPIC33FJ128MC802/debug/user.o \
   --defsym=__MPLAB_BUILD=1 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_SIMULATOR=1 \
   -Tp33FJ128MC802.gld.00 \
   --stack=16 \
   --check-sections \
@@ -35,10 +38,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/XC16_dsPIC33FJ128MC802/production/CodeMeca.X.production.map \
+  -Map=dist/XC16_dsPIC33FJ128MC802/debug/CodeMeca.X.debug.map \
   --report-mem \
   --memorysummary \
-  dist/XC16_dsPIC33FJ128MC802/production/memoryfile.xml \
+  dist/XC16_dsPIC33FJ128MC802/debug/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -56,7 +59,7 @@ d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                               (__crt_start_mode_normal)
 d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                              build/XC16_dsPIC33FJ128MC802/production/main.o (___delay32)
+                              build/XC16_dsPIC33FJ128MC802/debug/main.o (___delay32)
 
 
 Selected CodeGuard Options:
@@ -91,11 +94,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x10a           0x18f  (399)
-.text                        0x30a                0x2e            0x45  (69)
-.init.delay32                0x338                0x1c            0x2a  (42)
-.text                        0x354                0x1c            0x2a  (42)
+.text                        0x30a                0x88            0xcc  (204)
+.init.delay32                0x392                0x1c            0x2a  (42)
+.text                        0x3ae                0x1c            0x2a  (42)
 
-                 Total "program" memory used (bytes):          0x228  (552) <1%
+                 Total "program" memory used (bytes):          0x2af  (687) <1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -135,18 +138,18 @@ External Symbols in Program Memory (by address):
                   0x0002f8                  __AltMathError
                   0x0002fe                  __AltDMACError
                   0x000304                  __DefaultInterrupt
-                  0x00030a                  _main
-                  0x000338                  ___delay32
-                  0x000354                  _InitApp
-                  0x00036a                  _ConfigureOscillator
+                  0x000340                  _main
+                  0x000392                  ___delay32
+                  0x0003ae                  _InitApp
+                  0x0003c4                  _ConfigureOscillator
                   0xf80000                  __FBS.sec
                   0xf80002                  __FSS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x00036a                  _ConfigureOscillator
-                  0x000354                  _InitApp
+                  0x0003c4                  _ConfigureOscillator
+                  0x0003ae                  _InitApp
                   0x0002ce                  __AddressError
                   0x0002ec                  __AltAddressError
                   0x0002fe                  __AltDMACError
@@ -161,12 +164,12 @@ External Symbols in Program Memory (by name):
                   0x0002da                  __MathError
                   0x0002c8                  __OscillatorFail
                   0x0002d4                  __StackError
-                  0x000338                  ___delay32
+                  0x000392                  ___delay32
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00030a                  _main
+                  0x000340                  _main
 
 Memory Configuration
 
@@ -193,13 +196,16 @@ FUID3            0xf80016           0x000002
 
 Linker script and memory map
 
-LOAD build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
-LOAD build/XC16_dsPIC33FJ128MC802/production/interrupts.o
-LOAD build/XC16_dsPIC33FJ128MC802/production/main.o
-LOAD build/XC16_dsPIC33FJ128MC802/production/system.o
-LOAD build/XC16_dsPIC33FJ128MC802/production/traps.o
-LOAD build/XC16_dsPIC33FJ128MC802/production/user.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/main.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/system.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/traps.o
+LOAD build/XC16_dsPIC33FJ128MC802/debug/user.o
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_SIMULATOR = 0x1
 LOAD p33FJ128MC802
 LOAD d:/games/mplab/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
@@ -242,7 +248,7 @@ LOAD d:/games/mplab/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x40 build/XC16_dsPIC33FJ128MC802/production/traps.o
+ .isr.text        0x0002c8         0x40 build/XC16_dsPIC33FJ128MC802/debug/traps.o
                   0x0002c8                  __OscillatorFail
                   0x0002ce                  __AddressError
                   0x0002d4                  __StackError
@@ -268,17 +274,17 @@ usercode
 
 __FBS             0xf80000          0x2
  *(__FBS.sec*)
- __FBS.sec        0xf80000          0x2 /CW/_FBS åä
+ __FBS.sec        0xf80000          0x2 /CW/_FBS ­á
                   0xf80000                  __FBS.sec
 
 __FSS             0xf80002          0x2
  *(__FSS.sec*)
- __FSS.sec        0xf80002          0x2 /CW/_FSSÕä
+ __FSS.sec        0xf80002          0x2 /CW/_FSS0Ô
                   0xf80002                  __FSS.sec
 
 __FGS             0xf80004          0x2
  *(__FGS.sec*)
- __FGS.sec        0xf80004          0x2 /CW/_FGSÀ„ä
+ __FGS.sec        0xf80004          0x2 /CW/_FGS`FÔ
                   0xf80004                  __FGS.sec
 
 __FOSCSEL
@@ -311,45 +317,45 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xd31
+.debug_info       0x000000        0xd93
  *(.debug_info)
- .debug_info      0x000000        0x116 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
- .debug_info      0x000116        0x10e build/XC16_dsPIC33FJ128MC802/production/interrupts.o
- .debug_info      0x000224        0x1b3 build/XC16_dsPIC33FJ128MC802/production/main.o
- .debug_info      0x0003d7        0x12d build/XC16_dsPIC33FJ128MC802/production/system.o
- .debug_info      0x000504        0x3ee build/XC16_dsPIC33FJ128MC802/production/traps.o
- .debug_info      0x0008f2        0x43f build/XC16_dsPIC33FJ128MC802/production/user.o
+ .debug_info      0x000000        0x116 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
+ .debug_info      0x000116        0x10e build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
+ .debug_info      0x000224        0x215 build/XC16_dsPIC33FJ128MC802/debug/main.o
+ .debug_info      0x000439        0x12d build/XC16_dsPIC33FJ128MC802/debug/system.o
+ .debug_info      0x000566        0x3ee build/XC16_dsPIC33FJ128MC802/debug/traps.o
+ .debug_info      0x000954        0x43f build/XC16_dsPIC33FJ128MC802/debug/user.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1f2
+.debug_abbrev     0x000000        0x22a
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x1f build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
- .debug_abbrev    0x00001f         0x1f build/XC16_dsPIC33FJ128MC802/production/interrupts.o
- .debug_abbrev    0x00003e         0x6c build/XC16_dsPIC33FJ128MC802/production/main.o
- .debug_abbrev    0x0000aa         0x34 build/XC16_dsPIC33FJ128MC802/production/system.o
- .debug_abbrev    0x0000de         0x8a build/XC16_dsPIC33FJ128MC802/production/traps.o
- .debug_abbrev    0x000168         0x8a build/XC16_dsPIC33FJ128MC802/production/user.o
+ .debug_abbrev    0x000000         0x1f build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
+ .debug_abbrev    0x00001f         0x1f build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
+ .debug_abbrev    0x00003e         0xa4 build/XC16_dsPIC33FJ128MC802/debug/main.o
+ .debug_abbrev    0x0000e2         0x34 build/XC16_dsPIC33FJ128MC802/debug/system.o
+ .debug_abbrev    0x000116         0x8a build/XC16_dsPIC33FJ128MC802/debug/traps.o
+ .debug_abbrev    0x0001a0         0x8a build/XC16_dsPIC33FJ128MC802/debug/user.o
 
-.debug_line       0x000000        0x2b2
+.debug_line       0x000000        0x2c8
  *(.debug_line)
- .debug_line      0x000000         0x1a build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
- .debug_line      0x00001a         0x1a build/XC16_dsPIC33FJ128MC802/production/interrupts.o
- .debug_line      0x000034         0xbc build/XC16_dsPIC33FJ128MC802/production/main.o
- .debug_line      0x0000f0         0x38 build/XC16_dsPIC33FJ128MC802/production/system.o
- .debug_line      0x000128         0xd3 build/XC16_dsPIC33FJ128MC802/production/traps.o
- .debug_line      0x0001fb         0xb7 build/XC16_dsPIC33FJ128MC802/production/user.o
+ .debug_line      0x000000         0x1a build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
+ .debug_line      0x00001a         0x1a build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
+ .debug_line      0x000034         0xd2 build/XC16_dsPIC33FJ128MC802/debug/main.o
+ .debug_line      0x000106         0x38 build/XC16_dsPIC33FJ128MC802/debug/system.o
+ .debug_line      0x00013e         0xd3 build/XC16_dsPIC33FJ128MC802/debug/traps.o
+ .debug_line      0x000211         0xb7 build/XC16_dsPIC33FJ128MC802/debug/user.o
 
-.debug_frame      0x000000        0x1bc
+.debug_frame      0x000000        0x1f0
  *(.debug_frame)
- .debug_frame     0x000000         0x2e build/XC16_dsPIC33FJ128MC802/production/main.o
- .debug_frame     0x00002e         0x2e build/XC16_dsPIC33FJ128MC802/production/system.o
- .debug_frame     0x00005c        0x132 build/XC16_dsPIC33FJ128MC802/production/traps.o
- .debug_frame     0x00018e         0x2e build/XC16_dsPIC33FJ128MC802/production/user.o
+ .debug_frame     0x000000         0x62 build/XC16_dsPIC33FJ128MC802/debug/main.o
+ .debug_frame     0x000062         0x2e build/XC16_dsPIC33FJ128MC802/debug/system.o
+ .debug_frame     0x000090        0x132 build/XC16_dsPIC33FJ128MC802/debug/traps.o
+ .debug_frame     0x0001c2         0x2e build/XC16_dsPIC33FJ128MC802/debug/user.o
 
 .debug_str        0x000000         0x20
  *(.debug_str)
- .debug_str       0x000000          0xc build/XC16_dsPIC33FJ128MC802/production/traps.o
- .debug_str       0x00000c         0x14 build/XC16_dsPIC33FJ128MC802/production/user.o
+ .debug_str       0x000000          0xc build/XC16_dsPIC33FJ128MC802/debug/traps.o
+ .debug_str       0x00000c         0x14 build/XC16_dsPIC33FJ128MC802/debug/user.o
 
 .debug_loc
  *(.debug_loc)
@@ -361,13 +367,13 @@ __FUID3
                   0x000000        0x142
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x1b build/XC16_dsPIC33FJ128MC802/production/main.o
+                  0x000000         0x1b build/XC16_dsPIC33FJ128MC802/debug/main.o
  .debug_pubnames
-                  0x00001b         0x2a build/XC16_dsPIC33FJ128MC802/production/system.o
+                  0x00001b         0x2a build/XC16_dsPIC33FJ128MC802/debug/system.o
  .debug_pubnames
-                  0x000045         0xdf build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000045         0xdf build/XC16_dsPIC33FJ128MC802/debug/traps.o
  .debug_pubnames
-                  0x000124         0x1e build/XC16_dsPIC33FJ128MC802/production/user.o
+                  0x000124         0x1e build/XC16_dsPIC33FJ128MC802/debug/user.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -375,13 +381,13 @@ __FUID3
 .debug_aranges    0x000000         0x60
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/XC16_dsPIC33FJ128MC802/production/main.o
+                  0x000000         0x18 build/XC16_dsPIC33FJ128MC802/debug/main.o
  .debug_aranges
-                  0x000018         0x18 build/XC16_dsPIC33FJ128MC802/production/system.o
+                  0x000018         0x18 build/XC16_dsPIC33FJ128MC802/debug/system.o
  .debug_aranges
-                  0x000030         0x18 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000030         0x18 build/XC16_dsPIC33FJ128MC802/debug/traps.o
  .debug_aranges
-                  0x000048         0x18 build/XC16_dsPIC33FJ128MC802/production/user.o
+                  0x000048         0x18 build/XC16_dsPIC33FJ128MC802/debug/user.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1467,40 +1473,40 @@ LOAD d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a
 LOAD d:/games/mplab/bin/bin/../../lib\libm-elf.a
 LOAD d:/games/mplab/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/XC16_dsPIC33FJ128MC802/production/CodeMeca.X.production.elf elf32-pic30)
-LOAD /CW/_FGSÀ„ä
-LOAD /CW/_FSSÕä
-LOAD /CW/_FBS åä
+OUTPUT(dist/XC16_dsPIC33FJ128MC802/debug/CodeMeca.X.debug.elf elf32-pic30)
+LOAD /CW/_FGS`FÔ
+LOAD /CW/_FSS0Ô
+LOAD /CW/_FBS ­á
 
 .debug_pubtypes
                   0x000060        0x100
  .debug_pubtypes
-                  0x000060         0x12 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+                  0x000060         0x12 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
  .debug_pubtypes
-                  0x000072         0x12 build/XC16_dsPIC33FJ128MC802/production/interrupts.o
+                  0x000072         0x12 build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
  .debug_pubtypes
-                  0x000084         0x2b build/XC16_dsPIC33FJ128MC802/production/main.o
+                  0x000084         0x2b build/XC16_dsPIC33FJ128MC802/debug/main.o
  .debug_pubtypes
-                  0x0000af         0x12 build/XC16_dsPIC33FJ128MC802/production/system.o
+                  0x0000af         0x12 build/XC16_dsPIC33FJ128MC802/debug/system.o
  .debug_pubtypes
-                  0x0000c1         0x42 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x0000c1         0x42 build/XC16_dsPIC33FJ128MC802/debug/traps.o
  .debug_pubtypes
-                  0x000103         0x5d build/XC16_dsPIC33FJ128MC802/production/user.o
+                  0x000103         0x5d build/XC16_dsPIC33FJ128MC802/debug/user.o
 
 __c30_signature
                   0x000160         0x36
  __c30_signature
-                  0x000160          0x6 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+                  0x000160          0x6 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
  __c30_signature
-                  0x000166          0x6 build/XC16_dsPIC33FJ128MC802/production/interrupts.o
+                  0x000166          0x6 build/XC16_dsPIC33FJ128MC802/debug/interrupts.o
  __c30_signature
-                  0x00016c          0x6 build/XC16_dsPIC33FJ128MC802/production/main.o
+                  0x00016c          0x6 build/XC16_dsPIC33FJ128MC802/debug/main.o
  __c30_signature
-                  0x000172          0x6 build/XC16_dsPIC33FJ128MC802/production/system.o
+                  0x000172          0x6 build/XC16_dsPIC33FJ128MC802/debug/system.o
  __c30_signature
-                  0x000178          0x6 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000178          0x6 build/XC16_dsPIC33FJ128MC802/debug/traps.o
  __c30_signature
-                  0x00017e          0x6 build/XC16_dsPIC33FJ128MC802/production/user.o
+                  0x00017e          0x6 build/XC16_dsPIC33FJ128MC802/debug/user.o
  __c30_signature
                   0x000184          0x6 d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
@@ -1510,82 +1516,82 @@ __c30_signature
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
-                  0xf8000e          0x2 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+                  0xf8000e          0x2 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
 
 .config_PWMPIN    0xf8000c          0x2
  .config_PWMPIN
-                  0xf8000c          0x2 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+                  0xf8000c          0x2 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
 
 .config_FWDTEN    0xf8000a          0x2
  .config_FWDTEN
-                  0xf8000a          0x2 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+                  0xf8000a          0x2 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
 
 .config_FCKSM     0xf80008          0x2
- .config_FCKSM    0xf80008          0x2 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+ .config_FCKSM    0xf80008          0x2 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/XC16_dsPIC33FJ128MC802/production/configuration_bits.o
+ .config_IESO     0xf80006          0x2 build/XC16_dsPIC33FJ128MC802/debug/configuration_bits.o
 
 .ivt._OscillatorFail
                   0x000006          0x2
  .ivt._OscillatorFail
-                  0x000006          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000006          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .ivt._AddressError
                   0x000008          0x2
  .ivt._AddressError
-                  0x000008          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000008          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .ivt._StackError
                   0x00000a          0x2
  .ivt._StackError
-                  0x00000a          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00000a          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .ivt._MathError
                   0x00000c          0x2
  .ivt._MathError
-                  0x00000c          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00000c          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .ivt._DMACError
                   0x00000e          0x2
  .ivt._DMACError
-                  0x00000e          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00000e          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .aivt._AltOscillatorFail
                   0x000106          0x2
  .aivt._AltOscillatorFail
-                  0x000106          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000106          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .aivt._AltAddressError
                   0x000108          0x2
  .aivt._AltAddressError
-                  0x000108          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x000108          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .aivt._AltStackError
                   0x00010a          0x2
  .aivt._AltStackError
-                  0x00010a          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00010a          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .aivt._AltMathError
                   0x00010c          0x2
  .aivt._AltMathError
-                  0x00010c          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00010c          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
 .aivt._AltDMACError
                   0x00010e          0x2
  .aivt._AltDMACError
-                  0x00010e          0x2 build/XC16_dsPIC33FJ128MC802/production/traps.o
+                  0x00010e          0x2 build/XC16_dsPIC33FJ128MC802/debug/traps.o
 
-.text             0x00030a         0x2e
- .text            0x00030a         0x2e build/XC16_dsPIC33FJ128MC802/production/main.o
-                  0x00030a                  _main
+.text             0x00030a         0x88
+ .text            0x00030a         0x88 build/XC16_dsPIC33FJ128MC802/debug/main.o
+                  0x000340                  _main
 
-.init.delay32     0x000338         0x1c
- .init.delay32    0x000338         0x1c d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000338                  ___delay32
+.init.delay32     0x000392         0x1c
+ .init.delay32    0x000392         0x1c d:/games/mplab/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000392                  ___delay32
 
-.text             0x000354         0x1c
- .text            0x000354         0x16 build/XC16_dsPIC33FJ128MC802/production/user.o
-                  0x000354                  _InitApp
- .text            0x00036a          0x6 build/XC16_dsPIC33FJ128MC802/production/system.o
-                  0x00036a                  _ConfigureOscillator
+.text             0x0003ae         0x1c
+ .text            0x0003ae         0x16 build/XC16_dsPIC33FJ128MC802/debug/user.o
+                  0x0003ae                  _InitApp
+ .text            0x0003c4          0x6 build/XC16_dsPIC33FJ128MC802/debug/system.o
+                  0x0003c4                  _ConfigureOscillator
